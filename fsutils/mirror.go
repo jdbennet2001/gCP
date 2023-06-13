@@ -3,7 +3,6 @@ package fsutils
 import (
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"path"
 	"path/filepath"
@@ -46,17 +45,17 @@ func copy(sourcePath string, targetPath string) {
 
 	from, err := os.Open(sourcePath)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("Error: File open error", sourcePath, ", ", err)
 	}
 
 	to, err := os.OpenFile(targetPath, os.O_RDWR|os.O_CREATE, 0666)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("Error: File open error", targetPath, ", ", err)
 	}
 
 	_, err = io.Copy(to, from)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("Error: File copy error", sourcePath, ", ", err)
 	}
 
 }
